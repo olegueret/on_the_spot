@@ -15,6 +15,9 @@ tmtags
 
 .idea
 
+# NETBEANS
+nbproject
+
 ## PROJECT::GENERAL
 coverage
 rdoc

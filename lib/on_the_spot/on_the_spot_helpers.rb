@@ -59,6 +59,7 @@ module OnTheSpot
       html_options[:'data-ok']          = options[:ok_text]
       html_options[:'data-cancel']      = options[:cancel_text]
       html_options[:'data-tooltip']     = options[:tooltip]
+      html_options[:'data-locale']      = options[:locale]
 
       content_tag("span", html_options) do
         if editable_type == :select
