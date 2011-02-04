@@ -14,7 +14,16 @@ module OnTheSpot
           select_data = params[:select_array]
           object = klass.camelize.constantize.find(id)
           Globalize.with_locale params[:locale] do
-            if object.update_attributes(field => params[:value])
+            if params[:no_validate]
+              updated_ok = object.with_transaction_returning_status do
+                object.attributes = {field => params[:value]}
+                object.save(false)
+              end
+            else
+              updated_ok = object.update_attributes(field => params[:value])
+            end
+
+            if updated_ok
               if select_data.nil?
                 render :text => CGI::escapeHTML(object.send(field).to_s)
               else
